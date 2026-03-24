@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JesusConnect</title>
+</head>
+<body style="margin:0;font-family:serif;background:#111;color:#ff6fae;">
+  <div style="padding:20px;min-height:100vh;background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.7)),url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65');background-size:cover;">
+    <h1>✝ JesusConnect</h1>
+    <p id="region"></p>
+    <p id="verse">Loading...</p>
+    <button onclick="save()">Mark as Read</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabase = window.supabase.createClient(
+      "YOUR_SUPABASE_URL",
+      "YOUR_SUPABASE_ANON_KEY"
+    );
+
+    let country = "US";
+
+    fetch("https://ipapi.co/json/")
+      .then(r => r.json())
+      .then(d => {
+        country = d.country_code || "US";
+        document.getElementById("region").innerText = "Region: " + country;
+      });
+
+    fetch("https://bible-api.com/john%203:16")
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById("verse").innerText = d.text;
+      });
+
+    async function save() {
+      await supabase.from("progress").insert([
+        {
+          verse: "John 3:16",
+          country: country,
+          language: "English",
+          completed: true
+        }
+      ]);
+      alert("Saved");
+    }
+  </script>
+</body>
+</html>

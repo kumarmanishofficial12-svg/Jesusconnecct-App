@@ -1,2 +1,13 @@
-# Jesusconnecct-App
-✝️ JesusConnect – Global Bible &amp; Prayer App  JesusConnect is a simple, powerful, and spiritual web app designed to bring people closer to the Word of God. It delivers real Bible verses daily, detects user region, and provides a meaningful reading experience with a sacred UI.
+# JesusConnect (No React)
+
+## Setup
+1. Replace YOUR_SUPABASE_URL and YOUR_SUPABASE_ANON_KEY in index.html
+2. Run supabase.sql in Supabase SQL editor
+3. Push to GitHub
+4. Deploy on Vercel
+
+## Stack
+- Supabase
+- Vercel
+- Bible API
+- IP API
